@@ -9,11 +9,13 @@ async function premiumLoadKeys() {
     try {
 
         const response = await fetch(
-    "technicalabhi12341-prog.github.io/E2EE-Loader-/keys.json?t=" + Date.now()
+"https://technicalabhi12341-prog.github.io/E2EE-Loader-/keys.json?t=" + Date.now()
 );
 
 const keys = await response.json();
 
+return keys;
+        
     } catch (e) {
 
         console.log("Keys Load Error:", e);
