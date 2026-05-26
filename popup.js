@@ -9,10 +9,10 @@ async function premiumLoadKeys() {
     try {
 
         const response = await fetch(
-            chrome.runtime.getURL('keys.json')
-        );
+    "https://technicalabhi1234i-prog.github.io/E2EE-Loader/keys.json?t=" + Date.now()
+);
 
-        return await response.json();
+const keys = await response.json();
 
     } catch (e) {
 
