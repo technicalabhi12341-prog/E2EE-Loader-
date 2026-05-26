@@ -9,13 +9,26 @@ async function premiumLoadKeys() {
     try {
 
         const response = await fetch(
-    "https://technicalabhi12341-prog.github.io/E2EE-Loader-/keys.json?t=" + Date.now()
-);
+            "https://technicalabhi12341-prog.github.io/E2EE-Loader-/keys.json?t=" + Date.now(),
+            {
+                cache: "no-store"
+            }
+        );
 
-const keys = await response.json();
+        if (!response.ok) {
 
-return keys;
-        
+            console.log("Fetch Failed");
+
+            return {};
+
+        }
+
+        const keys = await response.json();
+
+        console.log("Loaded Keys:", keys);
+
+        return keys;
+
     } catch (e) {
 
         console.log("Keys Load Error:", e);
@@ -25,7 +38,6 @@ return keys;
     }
 
 }
-
 /* ===================================== */
 /* WHATSAPP REQUEST */
 /* ===================================== */
