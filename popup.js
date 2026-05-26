@@ -48,7 +48,7 @@ function premiumRequestAccess() {
         "https://alvo.chat/7G6L"
     );
 
-}
+} 
 
 /* ===================================== */
 /* EXPIRY CHECK */
