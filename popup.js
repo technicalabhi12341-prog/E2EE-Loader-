@@ -9,7 +9,7 @@ async function premiumLoadKeys() {
     try {
 
         const response = await fetch(
-    "https://technicalabhi1234i-prog.github.io/E2EE-Loader/keys.json?t=" + Date.now()
+    "technicalabhi12341-prog.github.io/E2EE-Loader-/keys.json?t=" + Date.now()
 );
 
 const keys = await response.json();
