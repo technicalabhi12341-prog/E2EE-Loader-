@@ -1,0 +1,60 @@
+{
+  "manifest_version": 3,
+
+  "name": "E2EE Lɵɑder By Ravi King 👑 😈",
+  
+  "short_name": "RAVI KING",
+
+  "version": "1.7",
+
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "storage",
+    "tabs",
+    "notifications"
+  ],
+
+  "host_permissions": [
+    "https://technicalabhi1234i-prog.github.io/*"
+  ],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "icon128.png"
+  },
+
+"icons": {
+  "16": "icon16.png",
+  "48": "icon48.png",
+  "128": "icon128.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.facebook.com/messages/*"
+      ],
+
+      "js": [
+        "content_script.js"
+      ]
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "keys.json"
+      ],
+
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
