@@ -146,8 +146,10 @@ async function premiumVerify() {
                     const enteredKey =
                         input.value.trim();
 
-                    if (keys[enteredKey]) {
-
+                    if (
+keys[enteredKey] &&
+typeof keys[enteredKey] === "object"
+) {
                         if (
                             isExpired(
                                 keys[enteredKey].expiry
