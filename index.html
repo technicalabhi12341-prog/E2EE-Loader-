@@ -1,6 +1,6 @@
 <!DOCTYPE html>  <html lang="en">    <head>    
 <meta charset="utf-8">    
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title> E2EE Loader By Ravi King  </title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  <style>    /* ================= RESET ================= */
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>E2EE Loader By Ravi King 👑😈</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  <style>    /* ================= RESET ================= */
 
 *{
 margin:0;
@@ -632,12 +632,345 @@ box-shadow:
 0 0 18px rgba(255,215,0,.35);
 
 }
+/* ================= LIVE STATUS BADGE ================= */
+
+#liveStatusBadge{
+
+position:fixed;
+
+top:12px;
+
+left:12px;
+
+padding:8px 14px;
+
+border-radius:20px;
+
+background:rgba(0,255,120,.10);
+
+border:1px solid rgba(0,255,120,.25);
+
+backdrop-filter:blur(12px);
+
+-webkit-backdrop-filter:blur(12px);
+
+font-size:11px;
+
+font-weight:600;
+
+letter-spacing:1px;
+
+color:#8dffb1;
+
+z-index:9999;
+
+box-shadow:
+0 0 15px rgba(0,255,120,.12);
+
+animation:pulseBadge 2s infinite;
+
+}
+
+/* ================= BADGE ANIMATION ================= */
+
+@keyframes pulseBadge{
+
+0%{
+
+transform:scale(1);
+
+opacity:.8;
+
+}
+
+50%{
+
+transform:scale(1.04);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:.8;
+
+}
+
+}
+
+/* ================= PREMIUM CLOCK ================= */
+
+#premiumClock{
+
+position:fixed;
+
+top:60px;
+
+left:12px;
+
+padding:8px 12px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(12px);
+
+-webkit-backdrop-filter:blur(12px);
+
+font-size:12px;
+
+font-weight:600;
+
+letter-spacing:1px;
+
+color:#ffd700;
+
+z-index:9999;
+
+}
+
+/* ================= TOAST ================= */
+
+#premiumToast{
+
+position:fixed;
+
+bottom:25px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+padding:14px 22px;
+
+border-radius:18px;
+
+background:rgba(0,0,0,.55);
+
+border:1px solid rgba(255,215,0,.20);
+
+backdrop-filter:blur(16px);
+
+-webkit-backdrop-filter:blur(16px);
+
+color:#fff3cd;
+
+font-size:13px;
+
+font-weight:500;
+
+z-index:99999;
+
+opacity:0;
+
+pointer-events:none;
+
+animation:toastShow 5s ease forwards;
+
+}
+
+/* ================= TOAST ANIMATION ================= */
+
+@keyframes toastShow{
+
+0%{
+
+opacity:0;
+
+bottom:0;
+
+}
+
+15%{
+
+opacity:1;
+
+bottom:25px;
+
+}
+
+85%{
+
+opacity:1;
+
+bottom:25px;
+
+}
+
+100%{
+
+opacity:0;
+
+bottom:0;
+
+}
+
+}
+
+/* ================= MUSIC VISUALIZER ================= */
+
+.music-visualizer{
+
+position:fixed;
+
+top:70px;
+
+right:14px;
+
+display:flex;
+
+align-items:flex-end;
+
+gap:3px;
+
+height:22px;
+
+z-index:9999;
+
+opacity:.7;
+
+}
+
+.music-visualizer span{
+
+width:4px;
+
+height:8px;
+
+border-radius:10px;
+
+background:#ffd700;
+
+animation:musicWave 1s infinite ease-in-out;
+
+}
+
+.music-visualizer span:nth-child(2){
+
+animation-delay:.2s;
+
+}
+
+.music-visualizer span:nth-child(3){
+
+animation-delay:.4s;
+
+}
+
+.music-visualizer span:nth-child(4){
+
+animation-delay:.6s;
+
+}
+
+.music-visualizer span:nth-child(5){
+
+animation-delay:.8s;
+
+}
+
+@keyframes musicWave{
+
+0%{
+
+height:8px;
+
+opacity:.4;
+
+}
+
+50%{
+
+height:22px;
+
+opacity:1;
+
+}
+
+100%{
+
+height:8px;
+
+opacity:.4;
+
+}
+
+}
+
+/* ================= PREMIUM CONTAINER GLOW ================= */
+
+.container{
+
+animation:borderGlow 5s linear infinite;
+
+}
+
+@keyframes borderGlow{
+
+0%{
+
+box-shadow:
+0 0 25px rgba(255,215,0,.16),
+0 0 60px rgba(255,180,0,.08),
+inset 0 0 18px rgba(255,255,255,.03);
+
+}
+
+50%{
+
+box-shadow:
+0 0 35px rgba(255,215,0,.28),
+0 0 90px rgba(255,180,0,.15),
+inset 0 0 20px rgba(255,255,255,.05);
+
+}
+
+100%{
+
+box-shadow:
+0 0 25px rgba(255,215,0,.16),
+0 0 60px rgba(255,180,0,.08),
+inset 0 0 18px rgba(255,255,255,.03);
+
+}
+
+}
 </style>  </head>  <body> 
     <!-- MUSIC BUTTON -->
 
 <button id="musicBtn" class="music-btn">
 🎵
 </button>
+
+<!-- ================= PREMIUM STATUS BADGE ================= -->
+<div id="liveStatusBadge">
+🟢 SYSTEM ONLINE
+</div>
+
+<!-- ================= PREMIUM CLOCK ================= -->
+<div id="premiumClock">
+00:00:00
+</div>
+
+<!-- ================= PREMIUM TOAST ================= -->
+<div id="premiumToast">
+✨ Premium System Loaded Successfully
+</div>
+
+<!-- ================= MUSIC VISUALIZER ================= -->
+<div class="music-visualizer" id="musicVisualizer">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
 
 <audio id="bgMusic" loop>
     <source src="https://files.catbox.moe/a8s852.mp3" type="audio/mpeg">
@@ -709,7 +1042,7 @@ Stop Sending
 
 <!-- WHATSAPP -->    
 
-<a href="https://wa.link/0o20bf"    
+<a href="https://wa.link/t9ramk"    
 target="_blank"    
 class="whatsapp-link">    
 
@@ -971,6 +1304,109 @@ sparkles.appendChild(s);
 }
    /* ================= MUSIC TOGGLE ================= */
 
+/* ================= LIVE CLOCK ================= */
+
+function updatePremiumClock(){
+
+const clock =
+document.getElementById(
+"premiumClock"
+);
+
+if(clock){
+
+const now = new Date();
+
+clock.innerHTML =
+now.toLocaleTimeString();
+
+}
+
+}
+
+setInterval(
+updatePremiumClock,
+1000
+);
+
+updatePremiumClock();
+
+/* ================= MUSIC VISUALIZER TOGGLE ================= */
+
+const visualizer =
+document.getElementById("musicVisualizer");
+
+const musicBtn =
+document.getElementById("musicBtn");
+
+const bgMusic =
+document.getElementById("bgMusic");
+
+if(musicBtn && bgMusic){
+
+bgMusic.volume = 1;
+
+musicBtn.addEventListener(
+"click",
+async ()=>{
+
+try{
+
+if(bgMusic.paused){
+
+await bgMusic.play();
+
+bgMusic.muted = false;
+
+visualizer.style.opacity = "1";
+
+musicBtn.innerHTML = "⏸";
+
+console.log("Music Playing");
+
+}else{
+
+bgMusic.pause();
+
+visualizer.style.opacity = ".3";
+
+musicBtn.innerHTML = "🎵";
+
+console.log("Music Paused");
+
+}
+
+}catch(e){
+
+console.log(
+"Music Error:",
+e
+);
+
+}
+
+}
+
+);
+
+}
+
+/* ================= PREMIUM TOAST AUTO HIDE ================= */
+
+setTimeout(()=>{
+
+const toast =
+document.getElementById(
+"premiumToast"
+);
+
+if(toast){
+
+toast.style.display = "none";
+
+}
+
+},5000);
 
 </script>
 
@@ -978,5 +1414,8 @@ sparkles.appendChild(s);
 
 <script src="popup.js"></script>
 
+<script src="ui.js"></script>
+
 </body>
-</html>
+    </html>
+    
