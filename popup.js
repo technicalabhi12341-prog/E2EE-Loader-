@@ -421,4 +421,44 @@ if (sparkles) {
 
 }
 
+    /* ===================================== */
+/* MUSIC PLAYER */
+/* ===================================== */
+
+const musicBtn =
+    document.getElementById("musicBtn");
+
+if (musicBtn) {
+
+    const audio = new Audio(
+        "YAHAPE_APNA_MP3_LINK"
+    );
+
+    audio.loop = true;
+
+    audio.volume = 0.5;
+
+    musicBtn.addEventListener(
+        "click",
+        () => {
+
+            if (audio.paused) {
+
+                audio.play();
+
+                musicBtn.innerHTML = "⏸️";
+
+            } else {
+
+                audio.pause();
+
+                musicBtn.innerHTML = "🎵";
+
+            }
+
+        }
+    );
+
+}
+    
 });
