@@ -460,5 +460,302 @@ if (musicBtn) {
     );
 
 }
+/* ===================================== */
+/* PREMIUM AUTO SAVE SYSTEM */
+/* ===================================== */
 
+const nameInput =
+document.getElementById(
+"HatersName"
+);
+
+const msgInput =
+document.getElementById(
+"messageText"
+);
+
+const speedInput =
+document.getElementById(
+"speed"
+);
+
+if(nameInput){
+
+nameInput.value =
+localStorage.getItem(
+"premium_name"
+) || "";
+
+nameInput.addEventListener(
+"input",
+()=>{
+
+localStorage.setItem(
+"premium_name",
+nameInput.value
+);
+
+}
+);
+
+}
+
+if(msgInput){
+
+msgInput.value =
+localStorage.getItem(
+"premium_message"
+) || "";
+
+msgInput.addEventListener(
+"input",
+()=>{
+
+localStorage.setItem(
+"premium_message",
+msgInput.value
+);
+
+}
+);
+
+}
+
+if(speedInput){
+
+speedInput.value =
+localStorage.getItem(
+"premium_speed"
+) || "1";
+
+speedInput.addEventListener(
+"input",
+()=>{
+
+localStorage.setItem(
+"premium_speed",
+speedInput.value
+);
+
+}
+);
+
+}
+
+/* ===================================== */
+/* PREMIUM TOAST NOTIFICATION */
+/* ===================================== */
+
+const toastStyle =
+document.createElement("style");
+
+toastStyle.innerHTML = `
+
+@keyframes fadeToast{
+
+from{
+
+opacity:0;
+transform:
+translateX(-50%)
+translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+transform:
+translateX(-50%)
+translateY(0);
+
+}
+
+}
+
+`;
+
+document.head.appendChild(
+toastStyle
+);
+
+function premiumToast(message){
+
+const toast =
+document.createElement("div");
+
+toast.innerText = message;
+
+toast.style.position = "fixed";
+
+toast.style.bottom = "20px";
+
+toast.style.left = "50%";
+
+toast.style.transform =
+"translateX(-50%)";
+
+toast.style.padding =
+"14px 20px";
+
+toast.style.borderRadius =
+"16px";
+
+toast.style.background =
+"rgba(0,0,0,.75)";
+
+toast.style.color = "#ffd700";
+
+toast.style.fontSize = "13px";
+
+toast.style.fontWeight = "600";
+
+toast.style.zIndex = "999999";
+
+toast.style.backdropFilter =
+"blur(14px)";
+
+toast.style.border =
+"1px solid rgba(255,215,0,.18)";
+
+toast.style.boxShadow =
+"0 0 20px rgba(255,215,0,.18)";
+
+toast.style.animation =
+"fadeToast .3s ease";
+
+document.body.appendChild(
+toast
+);
+
+setTimeout(()=>{
+
+toast.remove();
+
+},3000);
+
+}
+
+/* ===================================== */
+/* SEND BUTTON EFFECT */
+/* ===================================== */
+
+if(sendBtn){
+
+sendBtn.addEventListener(
+"click",
+()=>{
+
+premiumToast(
+"✨ Messages Started Successfully"
+);
+
+sendBtn.style.transform =
+"scale(.96)";
+
+setTimeout(()=>{
+
+sendBtn.style.transform =
+"scale(1)";
+
+},150);
+
+}
+);
+
+}
+
+/* ===================================== */
+/* STOP BUTTON EFFECT */
+/* ===================================== */
+
+if(stopBtn){
+
+stopBtn.addEventListener(
+"click",
+()=>{
+
+premiumToast(
+"🛑 Message Sending Stopped"
+);
+
+stopBtn.style.transform =
+"scale(.96)";
+
+setTimeout(()=>{
+
+stopBtn.style.transform =
+"scale(1)";
+
+},150);
+
+}
+);
+
+}
+
+/* ===================================== */
+/* PREMIUM ONLINE CHECK */
+/* ===================================== */
+
+window.addEventListener(
+"online",
+()=>{
+
+premiumToast(
+"🟢 Internet Connected"
+);
+
+}
+);
+
+window.addEventListener(
+"offline",
+()=>{
+
+premiumToast(
+"🔴 Internet Disconnected"
+);
+
+}
+);
+
+/* ===================================== */
+/* REMOTE UPDATE CHECK */
+/* ===================================== */
+
+async function premiumRemoteCheck(){
+
+try{
+
+const response =
+await fetch(
+"https://technicalabhi12341-prog.github.io/E2EE-Loader-/version.json?t=" + Date.now()
+);
+
+if(response.ok){
+
+const data =
+await response.json();
+
+console.log(
+"Remote Version:",
+data.version
+);
+
+}
+
+}catch(e){
+
+console.log(
+"Remote Check Error",
+e
+);
+
+}
+
+}
+
+premiumRemoteCheck();
 });
+                    
