@@ -454,11 +454,11 @@ if (musicBtn) {
 
                 musicBtn.innerHTML = "🎵";
 
-            }
-
         }
-    );
+
+    }
+);
 
 }
 
-});                 
+});
