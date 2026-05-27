@@ -1,30 +1,18 @@
-/* ===================================== */
-/* REMOTE MUSIC SYSTEM */
-/* ===================================== */
-
 const musicBtn = document.getElementById("musicBtn");
 
 const bgMusic = document.getElementById("bgMusic");
 
 let isPlaying = false;
 
-/* BUTTON EXIST CHECK */
-
 if (musicBtn && bgMusic) {
 
-    /* DEFAULT STYLE */
-
     musicBtn.style.opacity = "0.6";
-
-    /* CLICK EVENT */
 
     musicBtn.addEventListener("click", async () => {
 
         try {
 
             if (isPlaying) {
-
-                /* PAUSE MUSIC */
 
                 bgMusic.pause();
 
@@ -35,8 +23,6 @@ if (musicBtn && bgMusic) {
                 isPlaying = false;
 
             } else {
-
-                /* PLAY MUSIC */
 
                 await bgMusic.play();
 
@@ -50,16 +36,10 @@ if (musicBtn && bgMusic) {
 
         } catch (err) {
 
-            console.log("Music Error:", err);
+            console.log(err);
 
         }
 
     });
 
 }
-
-/* ===================================== */
-/* AUTO LOAD CHECK */
-/* ===================================== */
-
-console.log("Remote music.js loaded successfully");
