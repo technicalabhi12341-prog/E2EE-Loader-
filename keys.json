@@ -1,19 +1,23 @@
 {
-  "VIP-KEY-1": {
-    "role": "premium",
-    "expiry": "2026-05-25T18:45:00+05:30"
-  },
-
-  "XXX": {
-    "role": "premium",
-    "expiry": "2026-06-01T23:59:59+05:30"
-  }
-}
-
-{
   "enabled": true,
 
-  "RK-PREMIUM-2026": {
-    "expiry": "2026-12-31T23:59:59"
+  "RAVI-KING-VIP-2026": {
+    "role": "premium",
+    "expiry": "2026-12-31T23:59:59+05:30"
+  },
+
+  "RAVI-GOLD-ACCESS": {
+    "role": "premium",
+    "expiry": "2027-01-15T23:59:59+05:30"
+  },
+
+  "PREMIUM-RK-999": {
+    "role": "premium",
+    "expiry": "2026-11-01T23:59:59+05:30"
+  },
+
+  "KING-ULTRA-2026": {
+    "role": "premium",
+    "expiry": "2027-05-01T23:59:59+05:30"
   }
 }
