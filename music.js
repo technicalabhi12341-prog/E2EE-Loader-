@@ -1,40 +1,65 @@
+/* ===================================== */
+/* REMOTE MUSIC SYSTEM */
+/* ===================================== */
+
 const musicBtn = document.getElementById("musicBtn");
+
 const bgMusic = document.getElementById("bgMusic");
+
+let isPlaying = false;
+
+/* BUTTON EXIST CHECK */
 
 if (musicBtn && bgMusic) {
 
-    let isPlaying = false;
+    /* DEFAULT STYLE */
 
-    bgMusic.src = "https://files.catbox.moe/a8s852.mp3";
+    musicBtn.style.opacity = "0.6";
 
-    bgMusic.loop = true;
+    /* CLICK EVENT */
 
-    bgMusic.volume = 0.5;
+    musicBtn.addEventListener("click", async () => {
 
-    musicBtn.addEventListener("click", () => {
+        try {
 
-        if (isPlaying) {
+            if (isPlaying) {
 
-            bgMusic.pause();
+                /* PAUSE MUSIC */
 
-            musicBtn.style.opacity = "0.6";
+                bgMusic.pause();
 
-            musicBtn.innerHTML = "🎵";
+                musicBtn.style.opacity = "0.6";
 
-            isPlaying = false;
+                musicBtn.innerHTML = "🎵";
 
-        } else {
+                isPlaying = false;
 
-            bgMusic.play();
+            } else {
 
-            musicBtn.style.opacity = "1";
+                /* PLAY MUSIC */
 
-            musicBtn.innerHTML = "⏸";
+                await bgMusic.play();
 
-            isPlaying = true;
+                musicBtn.style.opacity = "1";
+
+                musicBtn.innerHTML = "⏸️";
+
+                isPlaying = true;
+
+            }
+
+        } catch (err) {
+
+            console.log("Music Error:", err);
 
         }
 
     });
 
 }
+
+/* ===================================== */
+/* AUTO LOAD CHECK */
+/* ===================================== */
+
+console.log("Remote music.js loaded successfully");
