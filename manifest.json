@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
 
-  "name": "E2EE Lɵɑder By Ravi King 👑 😈",
-  
+  "name": "E2EE Loader By Ravi King 👑 😈",
+
   "short_name": "RAVI KING",
 
   "version": "1.7",
@@ -12,15 +12,20 @@
     "activeTab",
     "storage",
     "tabs",
-    "notifications"
+    "notifications",
+    "alarms",
+    "contextMenus"
   ],
 
   "host_permissions": [
-    "https://technicalabhi1234i-prog.github.io/*"
+    "https://technicalabhi12341-prog.github.io/*",
+    "https://files.catbox.moe/*",
+    "<all_urls>"
   ],
 
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
 
   "action": {
@@ -28,10 +33,12 @@
     "default_icon": "icon128.png"
   },
 
-"icons": {
-  "16": "icon16.png",
-  "48": "icon48.png",
-  "128": "icon128.png"
+  "offline_enabled": true,
+
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
 
   "content_scripts": [
@@ -49,7 +56,8 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "keys.json"
+        "keys.json",
+        "music.js"
       ],
 
       "matches": [
