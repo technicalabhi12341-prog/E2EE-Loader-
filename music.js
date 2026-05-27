@@ -36,8 +36,6 @@ let isPlaying = false;
 
 if (bgMusic) {
 
-    bgMusic.volume = 0.5;
-
     bgMusic.loop = true;
 
 }
@@ -190,7 +188,8 @@ if (musicBtn && bgMusic) {
 
             if (isPlaying) {
 
-                pauseMusic();
+                smoothPause();
+                await smoothPlay();
 
             } else {
 
@@ -224,7 +223,8 @@ window.addEventListener(
 
         } else {
 
-            pauseMusic();
+            smoothPause();
+         await smoothPlay();
 
         }
 
@@ -284,3 +284,165 @@ window.addEventListener(
 console.log(
     "Premium Music System Ready"
 );
+
+/* ===================================== */
+/* PREMIUM VOLUME MEMORY */
+/* ===================================== */
+
+function saveVolume(volume){
+
+try{
+
+localStorage.setItem(
+"premium_music_volume",
+volume
+);
+
+}catch(e){
+
+console.log(
+"Volume Save Error",
+e
+);
+
+}
+
+}
+
+function loadVolume(){
+
+try{
+
+return localStorage.getItem(
+"premium_music_volume"
+);
+
+}catch(e){
+
+console.log(
+"Volume Load Error",
+e
+);
+
+return null;
+
+}
+
+}
+
+if(bgMusic){
+
+const savedVolume =
+loadVolume();
+
+if(savedVolume){
+
+bgMusic.volume =
+parseFloat(savedVolume);
+
+}else{
+
+bgMusic.volume = 0.5;
+
+}
+
+bgMusic.addEventListener(
+"volumechange",
+()=>{
+
+saveVolume(
+bgMusic.volume
+);
+
+}
+);
+
+}
+
+/* ===================================== */
+/* SMOOTH AUDIO FADE */
+/* ===================================== */
+
+async function smoothPlay(){
+
+if(!bgMusic) return;
+
+bgMusic.volume = 0;
+
+await bgMusic.play();
+
+let volume = 0;
+
+const fadeIn =
+setInterval(()=>{
+
+volume += 0.05;
+
+if(volume >= 0.5){
+
+volume = 0.5;
+
+clearInterval(fadeIn);
+
+}
+
+bgMusic.volume = volume;
+
+},120);
+
+}
+
+function smoothPause(){
+
+if(!bgMusic) return;
+
+let volume =
+bgMusic.volume;
+
+const fadeOut =
+setInterval(()=>{
+
+volume -= 0.05;
+
+if(volume <= 0){
+
+volume = 0;
+
+clearInterval(fadeOut);
+
+bgMusic.pause();
+
+}
+
+bgMusic.volume = volume;
+
+},120);
+
+}
+
+/* ===================================== */
+/* PREMIUM BUTTON GLOW */
+/* ===================================== */
+
+if(musicBtn){
+
+setInterval(()=>{
+
+if(isPlaying){
+
+musicBtn.style.boxShadow =
+"0 0 18px rgba(255,215,0,.45)";
+
+setTimeout(()=>{
+
+musicBtn.style.boxShadow =
+"0 0 8px rgba(255,215,0,.15)";
+
+},800);
+
+}
+
+},1600);
+
+}
+
