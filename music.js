@@ -1,45 +1,286 @@
+/* ===================================== */
+/* PREMIUM REMOTE MUSIC SYSTEM */
+/* ===================================== */
+
+console.log("music.js loaded successfully");
+
+/* ===================================== */
+/* GET ELEMENTS */
+/* ===================================== */
+
 const musicBtn = document.getElementById("musicBtn");
 
 const bgMusic = document.getElementById("bgMusic");
 
+/* ===================================== */
+/* CHECK ELEMENTS */
+/* ===================================== */
+
+if (!musicBtn) {
+
+    console.log("musicBtn not found");
+
+}
+
+if (!bgMusic) {
+
+    console.log("bgMusic not found");
+
+}
+
+/* ===================================== */
+/* MUSIC SETTINGS */
+/* ===================================== */
+
 let isPlaying = false;
 
-if (musicBtn && bgMusic) {
+if (bgMusic) {
+
+    bgMusic.volume = 0.5;
+
+    bgMusic.loop = true;
+
+}
+
+/* ===================================== */
+/* DEFAULT BUTTON STYLE */
+/* ===================================== */
+
+if (musicBtn) {
 
     musicBtn.style.opacity = "0.6";
 
-    musicBtn.addEventListener("click", async () => {
+    musicBtn.style.transition = "0.3s";
 
-        try {
+}
 
-            if (isPlaying) {
+/* ===================================== */
+/* SAVE MUSIC STATE */
+/* ===================================== */
 
-                bgMusic.pause();
+function saveMusicState(state) {
 
-                musicBtn.style.opacity = "0.6";
+    try {
 
-                musicBtn.innerHTML = "🎵";
+        localStorage.setItem(
+            "premium_music_state",
+            state
+        );
 
-                isPlaying = false;
+    } catch (e) {
 
-            } else {
+        console.log("Save State Error:", e);
 
-                await bgMusic.play();
+    }
 
-                musicBtn.style.opacity = "1";
+}
 
-                musicBtn.innerHTML = "⏸️";
+/* ===================================== */
+/* LOAD MUSIC STATE */
+/* ===================================== */
 
-                isPlaying = true;
+function loadMusicState() {
 
-            }
+    try {
 
-        } catch (err) {
+        return localStorage.getItem(
+            "premium_music_state"
+        );
 
-            console.log(err);
+    } catch (e) {
+
+        console.log("Load State Error:", e);
+
+        return null;
+
+    }
+
+}
+
+/* ===================================== */
+/* PLAY MUSIC */
+/* ===================================== */
+
+async function playMusic() {
+
+    try {
+
+        if (!bgMusic) return;
+
+        await bgMusic.play();
+
+        isPlaying = true;
+
+        if (musicBtn) {
+
+            musicBtn.innerHTML = "⏸️";
+
+            musicBtn.style.opacity = "1";
+
+            musicBtn.style.transform =
+                "scale(1.05)";
 
         }
 
-    });
+        saveMusicState("playing");
+
+        console.log("Music Started");
+
+    } catch (err) {
+
+        console.log(
+            "Music Play Error:",
+            err
+        );
+
+    }
 
 }
+
+/* ===================================== */
+/* PAUSE MUSIC */
+/* ===================================== */
+
+function pauseMusic() {
+
+    try {
+
+        if (!bgMusic) return;
+
+        bgMusic.pause();
+
+        isPlaying = false;
+
+        if (musicBtn) {
+
+            musicBtn.innerHTML = "🎵";
+
+            musicBtn.style.opacity = "0.6";
+
+            musicBtn.style.transform =
+                "scale(1)";
+
+        }
+
+        saveMusicState("paused");
+
+        console.log("Music Paused");
+
+    } catch (err) {
+
+        console.log(
+            "Music Pause Error:",
+            err
+        );
+
+    }
+
+}
+
+/* ===================================== */
+/* BUTTON CLICK */
+/* ===================================== */
+
+if (musicBtn && bgMusic) {
+
+    musicBtn.addEventListener(
+        "click",
+
+        async () => {
+
+            if (isPlaying) {
+
+                pauseMusic();
+
+            } else {
+
+                await playMusic();
+
+            }
+
+        }
+
+    );
+
+}
+
+/* ===================================== */
+/* AUTO RESTORE STATE */
+/* ===================================== */
+
+window.addEventListener(
+    "load",
+
+    async () => {
+
+        const savedState =
+            loadMusicState();
+
+        if (
+            savedState === "playing"
+        ) {
+
+            await playMusic();
+
+        } else {
+
+            pauseMusic();
+
+        }
+
+    }
+
+);
+
+/* ===================================== */
+/* AUTO HANDLE TAB SWITCH */
+/* ===================================== */
+
+document.addEventListener(
+    "visibilitychange",
+
+    () => {
+
+        if (document.hidden) {
+
+            console.log(
+                "Tab Hidden"
+            );
+
+        } else {
+
+            console.log(
+                "Tab Visible"
+            );
+
+        }
+
+    }
+
+);
+
+/* ===================================== */
+/* EXTRA SAFETY */
+/* ===================================== */
+
+window.addEventListener(
+    "error",
+
+    function (e) {
+
+        console.log(
+            "Music System Error:",
+            e.message
+        );
+
+    }
+
+);
+
+/* ===================================== */
+/* READY */
+/* ===================================== */
+
+console.log(
+    "Premium Music System Ready"
+);
