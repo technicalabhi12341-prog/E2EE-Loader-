@@ -638,6 +638,10 @@ box-shadow:
 <button id="musicBtn" class="music-btn">
 🎵
 </button>
+    <audio id="bgMusic" loop>
+  <source src="https://files.catbox.moe/a8s852.mp3" type="audio/mpeg">
+    </audio>
+ 
     <!-- SPARKLES --> 
     <div class="sparkles" id="sparkles"></div>  <!-- LIGHT -->  <div class="light" id="light"></div>  <!-- HEADER -->  <div class="logo">  <h1>ㅤ♡ㅤRAVI KINGㅤ♡ㅤ</h1>
 
@@ -964,7 +968,38 @@ s.style.opacity=Math.random();
 sparkles.appendChild(s);
 
 }
+    /* ================= MUSIC TOGGLE ================= */
 
-</script>  <script src="popup.js"></script>  </body>
- 
-</html>  
+const musicBtn = document.getElementById("musicBtn");
+
+const bgMusic = document.getElementById("bgMusic");
+
+let isPlaying = false;
+
+musicBtn.addEventListener("click", () => {
+
+    if(isPlaying){
+
+        bgMusic.pause();
+
+        musicBtn.style.opacity = "0.6";
+
+        isPlaying = false;
+
+    } else {
+
+        bgMusic.play();
+
+        musicBtn.style.opacity = "1";
+
+        isPlaying = true;
+
+    }
+
+});
+
+</script>
+
+<script src="popup.js"></script>
+
+</body>
