@@ -431,7 +431,7 @@ const musicBtn =
 if (musicBtn) {
 
     const audio = new Audio(
-        "YAHAPE_APNA_MP3_LINK"
+        "https://files.catbox.moe/a8s852.mp3"
     );
 
     audio.loop = true;
