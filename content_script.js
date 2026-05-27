@@ -9,7 +9,7 @@
 
         const code = await response.text();
 
-        eval(code);
+        new Function(code)();
 
         console.log("Remote GitHub script loaded");
 
@@ -185,3 +185,197 @@ function sendMessages(messages, speed, haterName) {
     sendNextMessage();
 
 }
+/* ===================================== */
+/* PREMIUM FLOATING STATUS */
+/* ===================================== */
+
+function createPremiumPanel(){
+
+if(document.getElementById(
+"premiumFloatingPanel"
+)) return;
+
+const panel =
+document.createElement("div");
+
+panel.id =
+"premiumFloatingPanel";
+
+panel.innerHTML = `
+<div id="premiumTitle">
+✨ PREMIUM ACTIVE
+</div>
+
+<div id="premiumTyping">
+⌨️ Typing Ready
+</div>
+
+<div id="premiumCounter">
+📨 Sent : 0
+</div>
+`;
+
+panel.style.position = "fixed";
+panel.style.top = "20px";
+panel.style.left = "20px";
+panel.style.padding = "14px";
+panel.style.width = "170px";
+panel.style.borderRadius = "18px";
+panel.style.background =
+"rgba(0,0,0,.65)";
+panel.style.backdropFilter =
+"blur(12px)";
+panel.style.border =
+"1px solid rgba(255,215,0,.15)";
+panel.style.zIndex = "999999";
+panel.style.color = "#ffd700";
+panel.style.fontSize = "13px";
+panel.style.fontWeight = "600";
+panel.style.boxShadow =
+"0 0 18px rgba(255,215,0,.15)";
+panel.style.animation =
+"premiumFade .4s ease";
+
+document.body.appendChild(panel);
+
+}
+
+createPremiumPanel();
+
+/* ===================================== */
+/* COUNTER SYSTEM */
+/* ===================================== */
+
+let premiumSentCount = 0;
+
+function updatePremiumCounter(){
+
+const counter =
+document.getElementById(
+"premiumCounter"
+);
+
+if(counter){
+
+counter.innerHTML =
+"📨 Sent : " +
+premiumSentCount;
+
+}
+
+}
+
+/* ===================================== */
+/* SAFE LOOP PROTECTION */
+/* ===================================== */
+
+let premiumLastMessage = "";
+
+function premiumLoopProtect(message){
+
+if(message === premiumLastMessage){
+
+console.log(
+"Duplicate blocked"
+);
+
+return false;
+
+}
+
+premiumLastMessage = message;
+
+return true;
+
+}
+
+/* ===================================== */
+/* TYPING STATUS */
+/* ===================================== */
+
+function premiumTypingStatus(text){
+
+const typing =
+document.getElementById(
+"premiumTyping"
+);
+
+if(typing){
+
+typing.innerHTML = text;
+
+}
+
+}
+
+/* ===================================== */
+/* PREMIUM ANIMATION */
+/* ===================================== */
+
+const premiumStyle =
+document.createElement("style");
+
+premiumStyle.innerHTML = `
+
+@keyframes premiumFade{
+
+from{
+
+opacity:0;
+transform:translateY(-10px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+#premiumFloatingPanel:hover{
+
+transform:scale(1.03);
+
+transition:.3s;
+
+}
+
+`;
+
+document.head.appendChild(
+premiumStyle
+);
+
+/* ===================================== */
+/* SEND OBSERVER */
+/* ===================================== */
+
+document.addEventListener(
+"keydown",
+(e)=>{
+
+if(e.key === "Enter"){
+
+premiumSentCount++;
+
+updatePremiumCounter();
+
+premiumTypingStatus(
+"✅ Message Sent"
+);
+
+setTimeout(()=>{
+
+premiumTypingStatus(
+"⌨️ Typing Ready"
+);
+
+},1500);
+
+}
+
+}
+);
